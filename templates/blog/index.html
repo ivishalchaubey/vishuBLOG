@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% block body %}
+
+<div class="main-wrapper ">
+  <section class="cta-section theme-bg-light py-5 " >
+    <div class="container text-center">
+      <h2 class="heading">Awesome blog that's make your life Happy</h2>
+      <hr class=""/>
+      <div class="intro">
+        Welcome to my blog. Subscribe and get my latest blog post in your inbox.
+      </div> 
+      <form class="signup-form form-inline justify-content-center pt-3" method="get">
+        <div class="form-group">
+          <label class="sr-only" for="semail">Search Here</label>
+          <input
+            type="text"
+            id="search"
+            name="search"
+            class="form-control mr-md-1 semail"
+            placeholder="Search Here.."
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
+    <!-- //container -->
+  </section>
+  <section class="blog-list px-3 py-5 p-md-5" >
+    <div class="container">
+      <div class="item mb-5">
+        {% for a in pageObject %}
+
+        <div class="media mb-2 p-5 " style="background-color: rgba(172, 172, 172, 0.301);">
+          <img
+            class="mr-3 img-fluid post-thumb d-none d-md-flex"
+            src="media/{{a.blog_image}}"
+            alt="image"
+          />
+          <div class="media-body">
+            <h3 class="title mb-1">
+              <a href="blog/{{a.id}}">{{a.blog_title}}</a>
+            </h3>
+            <div class="meta mb-1">
+              <span class="date">{{a.blog_time}}</span>
+            </div>
+            <div class="intro">{{a.blog_desc | safe |slice:"0:215"}}...</div>
+            <a class="more-link" href="blog/{{a.id}}">Read more &rarr;</a>
+          </div>
+          <!--//media-body-->
+        </div>
+        <!--//media-->
+        {% empty %}
+        <div class="alert alert-danger" role="alert">
+          No Data Found
+        </div>
+        {% endfor %}
+      </div>
+      <!--//item-->
+
+      
+      <nav class="blog-nav nav nav-justified my-5">
+      {% if pageObject.has_previous %}
+      <a class="nav-link-prev nav-item nav-link rounded-left" href="?page={{pageObject.previous_page_number}}">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+      {% endif %}
+
+
+      {% if pageObject.has_next %}
+      <a class="nav-link-next nav-item nav-link rounded-right" href="?page={{pageObject.next_page_number}}">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+      {% endif %}
+    </nav>
+
+
+      
+        
+        
+    </div>
+  </section>
+
+</div>
+
+{% endblock body %}

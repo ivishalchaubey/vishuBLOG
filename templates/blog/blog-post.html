@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+	{% load static %}
+
+<div class="main-wrapper">
+	
+	<article class="blog-post px-3 py-5 p-md-5">
+		<div class="container">
+			    <header class="blog-post-header">
+					<h2 class="title mb-2"> {{posts.blog_title}} </h2>
+				    <div class="meta mb-3"> {{posts.blog_time}} </div>
+			    </header>
+			    
+			    <div class="blog-post-body">
+					<figure class="blog-banner">
+				        <a href="https://made4dev.com"><img class="img-fluid" src="/media/{{posts.blog_image}}" alt="image"></a>
+						<div class="m-t-3">
+				    {{posts.blog_desc | safe}}
+				</div>
+				    
+			    </div>
+				    
+			    <nav class="blog-nav nav nav-justified my-10">
+					<a class="nav-link-prev nav-item nav-link rounded-left rounded-right" href="/">Back<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				</nav>
+
+				
+		    </div><!--//container-->
+	    </article>
+	    
+	    
+	    
+		{% endblock body %}
